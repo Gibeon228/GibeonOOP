@@ -13,11 +13,10 @@ public abstract class NPC implements NPCInterface {
     private double health;
     private int speed;
     private States state;
-    private static int idCounter;
-    private final int playerID;
     protected List<NPC> myTeam;
     protected Vector2 position;
     Vector2 destination;
+    public boolean fire;
 
     public NPC(int attack, int protection, int[] damage, double health, int speed, States state) {
         this.attack = attack;
@@ -27,7 +26,6 @@ public abstract class NPC implements NPCInterface {
         this.maxHealth = health;
         this.speed = speed;
         this.state = state;
-        this.playerID = idCounter++;
     }
 
     public Vector2 getDestination() {
@@ -96,30 +94,11 @@ public abstract class NPC implements NPCInterface {
 
     }
 
-    public static int getIdCounter() {
-        return idCounter;
-    }
-
     public String getInfo() {
         String str = "" + this.state;
         String str2 = "" + (int)this.health;
         String var10000 = this.getClass().getSimpleName();
         return var10000 + str2 + "/" + (int)this.maxHealth + " " + str;
-    }
-
-    public void updatePosition() {
-        if (this.destination == null) {
-            this.destination = this.position;
-        }
-
-        Vector2 var10000 = this.position;
-        var10000.x += (this.destination.x - this.position.x) / 20;
-        var10000 = this.position;
-        var10000.y += (this.destination.y - this.position.y) / 20;
-    }
-
-    public int getPlayerID() {
-        return this.playerID;
     }
 
     protected void getAttack(NPC h) {

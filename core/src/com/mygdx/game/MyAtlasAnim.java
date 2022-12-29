@@ -21,4 +21,11 @@ public class MyAtlasAnim {
     public TextureRegion getFrame() {
         return  anim.getKeyFrame(time);
     }
+    public boolean isEnd() {
+        return anim.isAnimationFinished(time);
+    }
+
+    public void zTime() {
+        time = 0;
+    }
 }
